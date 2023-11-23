@@ -1,4 +1,3 @@
-
 import os
 import numpy as np
 import cv2
@@ -31,8 +30,10 @@ def augment_data(images, masks, save_path, augment=True):
 
     for idx, (x, y) in tqdm(enumerate(zip(images, masks)), total=len(images)):
         """ Extracting the dir name and image name """
-        dir_name = x.split("/")[-3]
-        name = dir_name + "_" + x.split("/")[-1].split(".")[0]
+        dir_name = x.split("\\")[-3]
+        name = dir_name + "_" + x.split("\\")[-1].split(".")[0]
+        
+   
 
         """ Read the image and mask """
         x = cv2.imread(x, cv2.IMREAD_COLOR)
@@ -100,3 +101,4 @@ if __name__ == "__main__":
 
     augment_data(train_x, train_y, "new_data/train/", augment=True)
     augment_data(valid_x, valid_y, "new_data/valid/", augment=False)
+    print("completed")
